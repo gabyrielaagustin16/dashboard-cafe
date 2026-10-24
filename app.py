@@ -18,7 +18,6 @@ st.markdown(
 h1 {font-size: 2.52vw !important; color: #264653; line-height: 1.15; font-weight: 800;}
 h3 {font-size: 1.82vw !important; color: #264653; margin-top: 2.5rem; font-weight: 700;}
  
-/* KPI: teks boleh turun baris, angka nggak boleh kepotong */
 [data-testid="stMetricLabel"], [data-testid="stMetricLabel"] div, [data-testid="stMetricLabel"] p {
     white-space: normal !important; overflow: visible !important; text-overflow: clip !important;
 }
@@ -30,7 +29,6 @@ h3 {font-size: 1.82vw !important; color: #264653; margin-top: 2.5rem; font-weigh
 [data-testid="stCaptionContainer"] p {font-size: 0.84vw !important;}
 [data-testid="stExpander"] summary p {font-size: 1.12vw !important; font-weight: 600;}
  
-/* sidebar filter dibikin lebar dan gede */
 section[data-testid="stSidebar"] {width: 21vw !important; min-width: 21vw !important;}
 [data-testid="stSidebar"] h2 {font-size: 1.54vw !important;}
 [data-testid="stSidebar"] label p {font-size: 1.05vw !important; font-weight: 600;}
@@ -44,7 +42,6 @@ section[data-testid="stSidebar"] {width: 21vw !important; min-width: 21vw !impor
 [data-testid="stSlider"] label p {font-size: 1.05vw !important; font-weight: 600;}
 [data-testid="stSlider"] p {font-size: 0.84vw !important;}
  
-/* tabel data transaksi */
 [data-testid="stTable"] table {font-size: 0.8vw !important;}
 [data-testid="stTable"] th {font-size: 0.8vw !important;}
 </style>
@@ -66,8 +63,7 @@ def tampilkan(fig, tinggi=TINGGI_CHART):
                      title_font=dict(size=UKURAN_JUDUL_SUMBU, color=WARNA_TEKS))
     fig.update_yaxes(tickfont=dict(size=UKURAN_FONT, color=WARNA_TEKS),
                      title_font=dict(size=UKURAN_JUDUL_SUMBU, color=WARNA_TEKS))
- 
-    # displayModeBar=False -> toolbar kecil di pojok kanan atas chart (kamera, zoom, dll) dihilangkan
+
     st.plotly_chart(fig, width="stretch", theme=None, config={"displayModeBar": False})
  
 UKURAN_FONT = 20          
@@ -103,7 +99,7 @@ Pakai filter di sebelah kiri buat melihat data sesuai kebutuhan.
     unsafe_allow_html=True,
 )
  
-st.sidebar.header("🔎 Filter Data")
+st.sidebar.header("Filter Data")
  
 pilihan_item = sorted(df["Item"].unique())
 item_dipilih = st.sidebar.multiselect("Item", pilihan_item, default=pilihan_item)
@@ -138,8 +134,7 @@ st.sidebar.caption(f"Menampilkan {len(df_filter):,} dari {len(df):,} transaksi")
 if df_filter.empty:
     st.warning("Nggak ada data yang cocok dengan filter. Coba longgarkan filternya.")
     st.stop()
- 
-# ---------- KPI ----------
+
 total_penjualan = df_filter["Total Spent"].sum()
 total_transaksi = df_filter["Transaction ID"].nunique()
 rata_transaksi = total_penjualan / total_transaksi
