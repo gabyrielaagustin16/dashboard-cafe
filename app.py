@@ -156,10 +156,9 @@ fig_line = px.line(
     color_discrete_sequence=[WARNA_UTAMA],
 )
 fig_line.update_traces(
-    line=dict(width=5), marker=dict(size=14),
-    text=tren["Total Spent"].map(lambda x: f"${x:,.0f}"),
-    mode="lines+markers+text", textposition="top center",
-    textfont=dict(size=UKURAN_FONT - 4, color=WARNA_TEKS), cliponaxis=False,
+    line=dict(width=5), 
+    marker=dict(size=14),
+    mode="lines+markers+text"
 )
  
 fig_line.update_xaxes(dtick="M1", tickformat="%b")
@@ -181,8 +180,6 @@ fig_bar = px.bar(
 )
 fig_bar.update_layout(showlegend=False, margin=dict(l=20, r=160, t=50, b=110))
 fig_bar.update_traces(
-    texttemplate="$%{x:,.0f}", textposition="outside",
-    textfont=dict(size=UKURAN_FONT, color=WARNA_TEKS), cliponaxis=False,
     hovertemplate="%{y}<br>$%{x:,.0f}<extra></extra>",
 )
 fig_bar.update_xaxes(tickprefix="$", tickformat="~s", range=[0, per_item["Total Spent"].max() * 1.25])
@@ -195,7 +192,7 @@ fig_pie = px.pie(
     color_discrete_sequence=PALET,
 )
 fig_pie.update_traces(
-    textfont=dict(size=UKURAN_FONT + 4, color=WARNA_TEKS), textinfo="percent+label",
+    textfont=dict(size=UKURAN_FONT + 4, color=WARNA_TEKS), textinfo="label",
     textposition="inside", insidetextorientation="horizontal",
     marker=dict(line=dict(color="white", width=3)),
     hovertemplate="%{label}<br>$%{value:,.0f} (%{percent})<extra></extra>",
@@ -217,8 +214,6 @@ fig_hist = px.bar(
 )
 fig_hist.update_traces(
     width=1.88,
-    text=[f"{j:,}" if j > 0 else "" for j in jumlah], textposition="outside",
-    textfont=dict(size=UKURAN_FONT, color=WARNA_TEKS), cliponaxis=False,
     hovertemplate="$%{x:.0f} (+-1)<br>%{y:,} transaksi<extra></extra>",
 )
 fig_hist.update_xaxes(tickmode="linear", tick0=0, dtick=2, tickprefix="$", range=[0, 26])
@@ -234,7 +229,7 @@ pivot = (
                      "Friday": "Jumat", "Saturday": "Sabtu", "Sunday": "Minggu"})
 )
 fig_heat = px.imshow(
-    pivot, text_auto=".0f", aspect="auto",
+    pivot, text_auto=False, aspect="auto",
     color_continuous_scale=["#F2F9F7", "#CBE9E2", "#9BD6CA", "#66BFAE", "#3FA897"],
     labels={"color": "Penjualan ($)", "x": "Hari", "y": "Item"},
 )
