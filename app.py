@@ -10,43 +10,43 @@ PALET = ["#2A9D8F", "#E9C46A", "#F4A261", "#6D9DC5", "#8AB17D",
          "#E76F51", "#B5838D", "#264653", "#A8DADC"]
 WARNA_UTAMA = "#2A9D8F"
 WARNA_TEKS = "#1F2D3D" 
-TINGGI_CHART = 650      
+TINGGI_CHART = 600      
  
 st.markdown(
     """
 <style>
-h1 {font-size: 3.6vw !important; color: #264653; line-height: 1.15; font-weight: 800;}
-h3 {font-size: 2.6vw !important; color: #264653; margin-top: 2.5rem; font-weight: 700;}
+h1 {font-size: 2.52vw !important; color: #264653; line-height: 1.15; font-weight: 800;}
+h3 {font-size: 1.82vw !important; color: #264653; margin-top: 2.5rem; font-weight: 700;}
  
 /* KPI: teks boleh turun baris, angka nggak boleh kepotong */
 [data-testid="stMetricLabel"], [data-testid="stMetricLabel"] div, [data-testid="stMetricLabel"] p {
     white-space: normal !important; overflow: visible !important; text-overflow: clip !important;
 }
-[data-testid="stMetricLabel"] p {font-size: 1.25vw !important; color: #3d4f57;}
+[data-testid="stMetricLabel"] p {font-size: 0.88vw !important; color: #3d4f57;}
 [data-testid="stMetricValue"], [data-testid="stMetricValue"] div {
-    font-size: 3.2vw !important; color: #2A9D8F; font-weight: 700;
+    font-size: 2.24vw !important; color: #2A9D8F; font-weight: 700;
     overflow: visible !important; text-overflow: clip !important;
 }
-[data-testid="stCaptionContainer"] p {font-size: 1.2vw !important;}
-[data-testid="stExpander"] summary p {font-size: 1.6vw !important; font-weight: 600;}
+[data-testid="stCaptionContainer"] p {font-size: 0.84vw !important;}
+[data-testid="stExpander"] summary p {font-size: 1.12vw !important; font-weight: 600;}
  
 /* sidebar filter dibikin lebar dan gede */
-section[data-testid="stSidebar"] {width: 26vw !important; min-width: 26vw !important;}
-[data-testid="stSidebar"] h2 {font-size: 2.2vw !important;}
-[data-testid="stSidebar"] label p {font-size: 1.5vw !important; font-weight: 600;}
-[data-testid="stSidebar"] [data-baseweb="select"] > div {min-height: 3.2vw;}
-[data-testid="stSidebar"] [data-baseweb="select"] * {font-size: 1.2vw !important;}
-[data-testid="stSidebar"] [data-tag] {height: auto !important; padding: 0.25vw 0.7vw !important; max-width: none !important;}
-[data-testid="stSidebar"] [data-tag] span {font-size: 1.2vw !important; max-width: none !important;}
-[data-testid="stSidebar"] [data-tag] svg {width: 0.9vw !important; height: 0.9vw !important;}
-[data-testid="stDateInputField"] {min-height: 3.2vw;}
-[data-testid="stDateInputField"] span, [data-testid="stDateInputField"] input {font-size: 1.4vw !important;}
-[data-testid="stSlider"] label p {font-size: 1.5vw !important; font-weight: 600;}
-[data-testid="stSlider"] p {font-size: 1.2vw !important;}
+section[data-testid="stSidebar"] {width: 21vw !important; min-width: 21vw !important;}
+[data-testid="stSidebar"] h2 {font-size: 1.54vw !important;}
+[data-testid="stSidebar"] label p {font-size: 1.05vw !important; font-weight: 600;}
+[data-testid="stSidebar"] [data-baseweb="select"] > div {min-height: 2.24vw;}
+[data-testid="stSidebar"] [data-baseweb="select"] * {font-size: 0.84vw !important;}
+[data-testid="stSidebar"] [data-tag] {height: auto !important; padding: 0.17vw 0.49vw !important; max-width: none !important;}
+[data-testid="stSidebar"] [data-tag] span {font-size: 0.84vw !important; max-width: none !important;}
+[data-testid="stSidebar"] [data-tag] svg {width: 0.63vw !important; height: 0.63vw !important;}
+[data-testid="stDateInputField"] {min-height: 2.24vw;}
+[data-testid="stDateInputField"] span, [data-testid="stDateInputField"] input {font-size: 0.98vw !important;}
+[data-testid="stSlider"] label p {font-size: 1.05vw !important; font-weight: 600;}
+[data-testid="stSlider"] p {font-size: 0.84vw !important;}
  
 /* tabel data transaksi */
-[data-testid="stTable"] table {font-size: 1.15vw !important;}
-[data-testid="stTable"] th {font-size: 1.15vw !important;}
+[data-testid="stTable"] table {font-size: 0.8vw !important;}
+[data-testid="stTable"] th {font-size: 0.8vw !important;}
 </style>
 """,
     unsafe_allow_html=True,
@@ -70,8 +70,8 @@ def tampilkan(fig, tinggi=TINGGI_CHART):
     # displayModeBar=False -> toolbar kecil di pojok kanan atas chart (kamera, zoom, dll) dihilangkan
     st.plotly_chart(fig, width="stretch", theme=None, config={"displayModeBar": False})
  
-UKURAN_FONT = 24          
-UKURAN_JUDUL_SUMBU = 26
+UKURAN_FONT = 20          
+UKURAN_JUDUL_SUMBU = 22
  
 @st.cache_data
 def muat_data():
@@ -93,7 +93,7 @@ df = muat_data()
 st.title("Dashboard Penjualan Cafe 2023")
 st.markdown(
     """
-<div style="font-size: 1.5vw; line-height: 1.7; color: #3d4f57; margin-bottom: 1.5rem;">
+<div style="font-size: 1.05vw; line-height: 1.7; color: #3d4f57; margin-bottom: 1.5rem;">
 Dashboard ini menampilkan data transaksi sebuah cafe sepanjang tahun 2023
 (dataset <b>Cafe Sales</b> dari Kaggle). Tiap baris adalah satu transaksi yang berisi
 item yang dibeli, jumlah, harga, metode pembayaran, dan lokasi pembelian.
@@ -191,7 +191,7 @@ fig_bar.update_traces(
     hovertemplate="%{y}<br>$%{x:,.0f}<extra></extra>",
 )
 fig_bar.update_xaxes(tickprefix="$", tickformat="~s", range=[0, per_item["Total Spent"].max() * 1.25])
-tampilkan(fig_bar, tinggi=700)
+tampilkan(fig_bar, tinggi=640)
  
 st.subheader("Proporsi Metode Pembayaran")
 per_bayar = df_filter.groupby("Payment Method", as_index=False)["Total Spent"].sum()
@@ -209,7 +209,7 @@ fig_pie.update_layout(
     margin=dict(l=20, r=20, t=20, b=20),
     legend=dict(font=dict(size=UKURAN_FONT + 6), itemsizing="constant", yanchor="middle", y=0.5),
 )
-tampilkan(fig_pie, tinggi=720)
+tampilkan(fig_pie, tinggi=650)
  
 st.subheader("Distribusi Nilai Transaksi")
 batas = np.arange(0, 28, 2)
@@ -247,7 +247,7 @@ fig_heat = px.imshow(
 fig_heat.update_traces(textfont=dict(size=UKURAN_FONT, color="#12232E"), xgap=3, ygap=3)
 fig_heat.update_coloraxes(colorbar=dict(tickfont=dict(size=UKURAN_FONT), title_font=dict(size=UKURAN_FONT)))
 fig_heat.update_xaxes(tickangle=0)
-tampilkan(fig_heat, tinggi=720)
+tampilkan(fig_heat, tinggi=650)
  
 st.subheader("Data Transaksi")
 jumlah_baris = 20
