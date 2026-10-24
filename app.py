@@ -10,7 +10,7 @@ PALET = ["#2A9D8F", "#E9C46A", "#F4A261", "#6D9DC5", "#8AB17D",
          "#E76F51", "#B5838D", "#264653", "#A8DADC"]
 WARNA_UTAMA = "#2A9D8F"
 WARNA_TEKS = "#1F2D3D" 
-TINGGI_CHART = 900      
+TINGGI_CHART = 650      
  
 st.markdown(
     """
@@ -67,10 +67,11 @@ def tampilkan(fig, tinggi=TINGGI_CHART):
     fig.update_yaxes(tickfont=dict(size=UKURAN_FONT, color=WARNA_TEKS),
                      title_font=dict(size=UKURAN_JUDUL_SUMBU, color=WARNA_TEKS))
  
+    # displayModeBar=False -> toolbar kecil di pojok kanan atas chart (kamera, zoom, dll) dihilangkan
     st.plotly_chart(fig, width="stretch", theme=None, config={"displayModeBar": False})
  
-UKURAN_FONT = 32          
-UKURAN_JUDUL_SUMBU = 36
+UKURAN_FONT = 24          
+UKURAN_JUDUL_SUMBU = 26
  
 @st.cache_data
 def muat_data():
@@ -102,7 +103,7 @@ Pakai filter di sebelah kiri buat melihat data sesuai kebutuhan.
     unsafe_allow_html=True,
 )
  
-st.sidebar.header("Filter Data")
+st.sidebar.header("🔎 Filter Data")
  
 pilihan_item = sorted(df["Item"].unique())
 item_dipilih = st.sidebar.multiselect("Item", pilihan_item, default=pilihan_item)
@@ -138,6 +139,7 @@ if df_filter.empty:
     st.warning("Nggak ada data yang cocok dengan filter. Coba longgarkan filternya.")
     st.stop()
  
+# ---------- KPI ----------
 total_penjualan = df_filter["Total Spent"].sum()
 total_transaksi = df_filter["Transaction ID"].nunique()
 rata_transaksi = total_penjualan / total_transaksi
@@ -189,7 +191,7 @@ fig_bar.update_traces(
     hovertemplate="%{y}<br>$%{x:,.0f}<extra></extra>",
 )
 fig_bar.update_xaxes(tickprefix="$", tickformat="~s", range=[0, per_item["Total Spent"].max() * 1.25])
-tampilkan(fig_bar, tinggi=950)
+tampilkan(fig_bar, tinggi=700)
  
 st.subheader("Proporsi Metode Pembayaran")
 per_bayar = df_filter.groupby("Payment Method", as_index=False)["Total Spent"].sum()
@@ -207,7 +209,7 @@ fig_pie.update_layout(
     margin=dict(l=20, r=20, t=20, b=20),
     legend=dict(font=dict(size=UKURAN_FONT + 6), itemsizing="constant", yanchor="middle", y=0.5),
 )
-tampilkan(fig_pie, tinggi=1000)
+tampilkan(fig_pie, tinggi=720)
  
 st.subheader("Distribusi Nilai Transaksi")
 batas = np.arange(0, 28, 2)
@@ -245,7 +247,7 @@ fig_heat = px.imshow(
 fig_heat.update_traces(textfont=dict(size=UKURAN_FONT, color="#12232E"), xgap=3, ygap=3)
 fig_heat.update_coloraxes(colorbar=dict(tickfont=dict(size=UKURAN_FONT), title_font=dict(size=UKURAN_FONT)))
 fig_heat.update_xaxes(tickangle=0)
-tampilkan(fig_heat, tinggi=950)
+tampilkan(fig_heat, tinggi=720)
  
 st.subheader("Data Transaksi")
 jumlah_baris = 20
